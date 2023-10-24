@@ -29,7 +29,7 @@ function App() {
             element: <Login />,
         }
     ])
-    console.log(isAuthenticated, "isAuthenticated")
+
     useEffect(() => {
         const token = localStorage.getItem("TexasToken");
         setIsAuthenticated(!!token);
