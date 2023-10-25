@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Flex, Text, Input, Button, HStack } from '@chakra-ui/react'
 import { useForm } from "react-hook-form"
 import * as yup from "yup"
@@ -6,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from "axios"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
+import CancelAPI from './CancelAPI';
 const Login = () => {
     const LoginDefaultValues = {
         email: "",
@@ -37,35 +37,36 @@ const Login = () => {
 
     }
     return (
-        <Box
-            height={'100vh'}
-            display="flex"
-            justifyContent={'center'}
-            alignItems="center"
-        >
-            <Flex w={'100rem'} flexDirection={{ base: 'column-reverse', md: 'row' }}>
-                <form onSubmit={handleSubmit(loginSubmit)}>
-                    <Flex flexDirection={"column"}>
-                        <HStack my={2} alignItems={"center"}>
+        // <Box
+        //     height={'100vh'}
+        //     display="flex"
+        //     justifyContent={'center'}
+        //     alignItems="center"
+        // >
+        //     <Flex w={'100rem'} flexDirection={{ base: 'column-reverse', md: 'row' }}>
+        //         <form onSubmit={handleSubmit(loginSubmit)}>
+        //             <Flex flexDirection={"column"}>
+        //                 <HStack my={2} alignItems={"center"}>
 
-                            <Text>Email:</Text>
-                            <Flex flexDirection={"column"}>
-                                <Input {...register("email")} />
-                                {errors?.email && <Text color="red">{errors.email.message}</Text>}
-                            </Flex>
-                        </HStack>
-                        <HStack my={2} alignItems={"center"}>
-                            <Text>Password:</Text>
-                            <Flex flexDirection={"column"}>
-                                <Input type="password" {...register("password")} />
-                                {errors?.password && <Text color="red">{errors.password.message}</Text>}
-                            </Flex>
-                        </HStack>
-                        <Button type="submit">Submit</Button>
-                    </Flex>
-                </form>
-            </Flex >
-        </Box >
+        //                     <Text>Email:</Text>
+        //                     <Flex flexDirection={"column"}>
+        //                         <Input {...register("email")} />
+        //                         {errors?.email && <Text color="red">{errors.email.message}</Text>}
+        //                     </Flex>
+        //                 </HStack>
+        //                 <HStack my={2} alignItems={"center"}>
+        //                     <Text>Password:</Text>
+        //                     <Flex flexDirection={"column"}>
+        //                         <Input type="password" {...register("password")} />
+        //                         {errors?.password && <Text color="red">{errors.password.message}</Text>}
+        //                     </Flex>
+        //                 </HStack>
+        //                 <Button type="submit">Submit</Button>
+        //             </Flex>
+        //         </form>
+        //     </Flex >
+        // </Box >
+        <CancelAPI/>
     )
 }
 
