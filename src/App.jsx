@@ -35,7 +35,6 @@ function App() {
         setIsAuthenticated(!!token);
     }, [localStorage.getItem("TexasToken"), isAuthenticated])
 
-    // return <RouterProvider router={isAuthenticated ? authRouter : router} />
     return <RouterProvider router={authRouter} />
 
 }
