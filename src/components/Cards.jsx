@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, useDisclosure, VStack, Flex, Button, Card as ChakraCard, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalOverlay, } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
@@ -10,11 +9,7 @@ const PostCard = ({ id, title, desc }) => {
     const navigate = useNavigate()
     const deletePost = () => {
         axios.delete(`${BaseURL}/posts/${id}`,
-            // {
-            //     header:{
-            //         Authorization:`Bearer ${token}`
-            //     }
-            // }
+     
         ).then(
             () => {
                 toast.success("Delete successfully")
