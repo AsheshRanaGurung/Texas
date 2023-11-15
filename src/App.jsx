@@ -23,12 +23,6 @@ function App() {
             element: <Login />,
         }
     ])
-    const router = createBrowserRouter([
-        {
-            path: "/login",
-            element: <Login />,
-        }
-    ])
 
     useEffect(() => {
         const token = localStorage.getItem("TexasToken");
