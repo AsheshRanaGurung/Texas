@@ -17,7 +17,7 @@ const Login = () => {
     });
     const navigate = useNavigate()
 
-    const { register, watch, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: LoginDefaultValues,
         resolver: yupResolver(schema)
     })
