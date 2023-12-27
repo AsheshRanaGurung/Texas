@@ -46,7 +46,6 @@ const Login = () => {
             <Flex w={'100rem'} flexDirection={{ base: 'column-reverse', md: 'row' }}>
                 <form onSubmit={handleSubmit(loginSubmit)}>
                     <Flex flexDirection={"column"}>
-                        {/* <Flex flexDirection={"row"} my={2} alignItems={"center"}> */}
                         <HStack my={2} alignItems={"center"}>
 
                             <Text>Email:</Text>
