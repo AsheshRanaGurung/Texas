@@ -12,7 +12,6 @@ const CardList = () => {
         setIsLoading(true)
         axios.get(`${BaseURL}/posts`).then(
             (res) => {
-                // console.log(res.data)
                 setPosts(res.data)
                 setIsLoading(false)
             }

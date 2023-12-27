@@ -97,10 +97,7 @@ const CardDetail = () => {
                             <Flex gap={2} flexDirection={"column"}>
                                 <Text>Title:</Text>
                                 <Input
-                                    // value={postDetail.title}
-                                    // onChange={(e) => {
-                                    //     setPostDetail({ ...postDetail, title: e.target.value })
-                                    // }}
+                                
                                     {...register("title")}
                                     placeholder={"Enter new title"} />
                                 <Text>Descrption:</Text>
