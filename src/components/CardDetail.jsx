@@ -105,10 +105,7 @@ const CardDetail = () => {
                                     placeholder={"Enter new title"} />
                                 <Text>Descrption:</Text>
                                 <Textarea
-                                    // value={postDetail.body}
-                                    // onChange={(e) => {
-                                    //     setPostDetail({ ...postDetail, body: e.target.value })
-                                    // }}
+                                 
                                     {...register("desc")}
                                     placeholder={"Enter new desc"} />
                                 <Button type="submit" onClick={(e) => handleSubmit(formSubmit(e))}>{loading ? < Spinner
