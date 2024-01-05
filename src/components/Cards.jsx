@@ -24,7 +24,7 @@ const PostCard = ({ title, desc }) => {
             <CardFooter>
                 <ButtonGroup spacing='2'>
                     <Button variant='solid' colorScheme='blue'>
-                        Buy now
+                        View Details
                     </Button>
                     <Button variant='ghost' colorScheme='blue'>
                         Add to cart
