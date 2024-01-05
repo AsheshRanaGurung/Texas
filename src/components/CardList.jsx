@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Spinner, Center, Grid, GridItem, Card, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup } from '@chakra-ui/react'
 import axios from "axios"
 import { BaseURL } from '../App'
+import PostCard from './Cards'
 
 const CardList = () => {
     const [posts, setPosts] = useState([])
@@ -42,7 +43,7 @@ const CardList = () => {
                             {posts.map((post) => {
                                 return (
                                     <GridItem m={1} key={post.id}>
-                                        <PostCard title={post.title} desc={post.body} />
+                                        <PostCard id={post.id} title={post.title} desc={post.body} />
                                     </GridItem>
 
                                 )

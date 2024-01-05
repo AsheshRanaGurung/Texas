@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, Button, Card as ChakraCard, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup } from '@chakra-ui/react'
-
-const PostCard = ({ title, desc }) => {
+import { useNavigate } from "react-router-dom"
+const PostCard = ({ id, title, desc }) => {
+    const navigate = useNavigate()
     return (
         <ChakraCard maxW='sm' height={"34.5rem"}>
             <CardBody>
@@ -23,7 +24,9 @@ const PostCard = ({ title, desc }) => {
             <Divider />
             <CardFooter>
                 <ButtonGroup spacing='2'>
-                    <Button variant='solid' colorScheme='blue'>
+                    <Button variant='solid' colorScheme='blue'
+                        onClick={() => navigate(`/post/${id}`)}
+                    >
                         View Details
                     </Button>
                     <Button variant='ghost' colorScheme='blue'>
