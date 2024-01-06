@@ -3,17 +3,16 @@ import { Text, Button, Card, CardBody, Image, Stack, Heading, CardFooter, Modal,
 import axios from 'axios'
 import { BaseURL } from '../App'
 import { useParams } from "react-router-dom"
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 const CardDetail = () => {
     const { id } = useParams()
     const [postDetail, setPostDetail] = useState({})
     const { isOpen, onOpen, onClose } = useDisclosure()
     useEffect(() => {
-
         axios.get(`${BaseURL}/posts/${id}`).then(
             (res) => {
-                // toast.success('Details fetched Successfully');
                 setPostDetail(res.data)
+                toast.success('Details fetched Successfully');
             }
         ).catch(
             (err) => {
@@ -21,7 +20,6 @@ const CardDetail = () => {
             }
         )
     }, [])
-    console.log(postDetail)
     return (
         <>
 

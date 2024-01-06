@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Spinner, Center, Grid, GridItem, Card, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup } from '@chakra-ui/react'
+import { Spinner, Center, Grid, GridItem } from '@chakra-ui/react'
 import axios from "axios"
 import { BaseURL } from '../App'
 import PostCard from './Cards'
@@ -47,8 +47,6 @@ const CardList = () => {
                                     </GridItem>
 
                                 )
-                                // console.log(post.title)
-
                             })}
                             )
                         </Grid>)
