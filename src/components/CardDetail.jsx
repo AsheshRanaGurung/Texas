@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { Text, Button, Card, CardBody, Image, Stack, Heading, CardFooter, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter, ModalOverlay, useDisclosure } from '@chakra-ui/react'
+import { Text, Flex, Textarea, Button, Card, CardBody, Image, Stack, Heading, CardFooter, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, Spinner, ModalOverlay, useDisclosure, Input } from '@chakra-ui/react'
 import axios from 'axios'
 import { BaseURL } from '../App'
 import { useParams } from "react-router-dom"
 import toast from 'react-hot-toast';
 const CardDetail = () => {
+
     const { id } = useParams()
     const [postDetail, setPostDetail] = useState({})
+    const [loading, setLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    // const formSubmit = async(e) => {
+    const formSubmit = (e) => {
+        e.preventDefault()
+        // const response =await axios.put(`${BaseURL}/post/${id}`, postDetail)
+        setLoading(true)
+        axios.put(`${BaseURL}/posts/${id}`, postDetail).then(
+            () => {
+                setLoading(false)
+                toast.success("Successfully edited data")
+                onClose()
+            }
+        ).catch(() => {
+            setLoading(false)
+            toast.error("Edit failed")
+        })
+    }
     useEffect(() => {
         axios.get(`${BaseURL}/posts/${id}`).then(
             (res) => {
@@ -16,6 +34,7 @@ const CardDetail = () => {
             }
         ).catch(
             (err) => {
+                toast.error("API failed")
 
             }
         )
@@ -53,19 +72,36 @@ const CardDetail = () => {
             </Card>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent py={2}>
                     <ModalHeader>Modal Title</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        this is modal
+                        <form>
+                            <Flex gap={2} flexDirection={"column"}>
+                                <Text>Title:</Text>
+                                <Input
+                                    value={postDetail.title}
+                                    onChange={(e) => {
+                                        setPostDetail({ ...postDetail, title: e.target.value })
+                                    }}
+                                    placeholder={"Enter new title"} />
+                                <Text>Descrption:</Text>
+                                <Textarea
+                                    value={postDetail.body}
+                                    onChange={(e) => {
+                                        setPostDetail({ ...postDetail, body: e.target.value })
+                                    }}
+                                    placeholder={"Enter new desc"} />
+                                <Button type="submit" onClick={(e) => formSubmit(e)}>{loading ? < Spinner
+                                    thickness='1px'
+                                    speed='0.65s'
+                                    emptyColor='gray.200'
+                                    color='blue.500'
+                                    size='sm'
+                                /> : "submit"}</Button>
+                            </Flex>
+                        </form>
                     </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button variant='ghost'>Secondary Action</Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
