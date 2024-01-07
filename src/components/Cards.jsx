@@ -1,8 +1,24 @@
 import React from "react";
-import { Text, Button, Card as ChakraCard, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup } from '@chakra-ui/react'
+import { Text, useDisclosure, VStack, Flex, Button, Card as ChakraCard, CardBody, Image, Stack, Heading, Divider, CardFooter, ButtonGroup, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalOverlay, } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { BaseURL } from "../App";
+import toast from "react-hot-toast"
 const PostCard = ({ id, title, desc }) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const navigate = useNavigate()
+    const deletePost = () => {
+        axios.delete(`${BaseURL}/posts/${id}`).then(
+            () => {
+                toast.success("Delete successfully")
+                onClose()
+            }
+        ).catch(() => {
+            toast.error("Delete failed")
+
+        })
+    }
     return (
         <ChakraCard maxW='sm' height={"34.5rem"}>
             <CardBody>
@@ -23,18 +39,53 @@ const PostCard = ({ id, title, desc }) => {
             </CardBody>
             <Divider />
             <CardFooter>
-                <ButtonGroup spacing='2'>
-                    <Button variant='solid' colorScheme='blue'
-                        onClick={() => navigate(`/post/${id}`)}
+                <ButtonGroup w={"100%"}>
+                    <Flex
+                        sx={{
+                            w: "inherit",
+                            justifyContent: "space-between"
+                        }}
                     >
-                        View Details
-                    </Button>
-                    <Button variant='ghost' colorScheme='blue'>
-                        Add to cart
-                    </Button>
+
+                        <Button variant='solid' colorScheme='blue'
+                            onClick={() => navigate(`/post/${id}`)}
+                        >
+                            View Details
+                        </Button>
+                        <Button variant='outline' colorScheme="red"
+                            onClick={onOpen}
+                        >
+                            Delete
+                        </Button>
+                    </Flex>
+                    {/* Follow DRY */}
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent py={2} >
+                            <ModalHeader>Modal Title</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                {/* <Flex flexDirection={"columns"}>
+
+                             </Flex> */}
+                                <VStack>
+                                    <Text py={3}>  Are you sure you want to delete <b>{title.slice(0, 20)}</b>?</Text>
+                                    <Flex w="100%" justifyContent={"space-around"}>
+                                        <Button variant={"solid"} colorScheme="red"
+
+                                            onClick={deletePost}>Delete</Button>
+                                        <Button variant={"outline"} colorScheme="teal"
+                                            onClick={onClose}
+                                        >Cancel</Button>
+                                    </Flex>
+
+                                </VStack>
+                            </ModalBody>
+                        </ModalContent>
+                    </Modal>
                 </ButtonGroup>
             </CardFooter>
-        </ChakraCard>
+        </ChakraCard >
     )
 };
 
