@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Spinner, Center, Grid, GridItem } from '@chakra-ui/react'
+import { Spinner, Center, Grid, GridItem, Button, Flex } from '@chakra-ui/react'
 import axios from "axios"
 import { BaseURL } from '../App'
 import PostCard from './Cards'
-
+import { useNavigate } from "react-router-dom"
 const CardList = () => {
     const [posts, setPosts] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
+    const navigate = useNavigate()
     useEffect(() => {
         setIsLoading(true)
         axios.get(`${BaseURL}/posts`).then(
@@ -39,17 +39,26 @@ const CardList = () => {
                         </Center >
                     )
                     : (
-                        <Grid templateColumns="repeat(3,1fr)" gap={2}>
-                            {posts.map((post) => {
-                                return (
-                                    <GridItem m={1} key={post.id}>
-                                        <PostCard id={post.id} title={post.title} desc={post.body} />
-                                    </GridItem>
+                        <>
+                            <Flex justifyContent={"flex-end"}>
+                                <Button onClick={(e) => {
+                                    e.preventDefault()
+                                    localStorage.removeItem("TexasToken");
+                                    navigate("/login")
+                                }}>Log out</Button>
+                            </Flex>
+                            <Grid templateColumns="repeat(3,1fr)" gap={2}>
+                                {posts.map((post) => {
+                                    return (
+                                        <GridItem m={1} key={post.id}>
+                                            <PostCard id={post.id} title={post.title} desc={post.body} />
+                                        </GridItem>
 
+                                    )
+                                })}
                                 )
-                            })}
-                            )
-                        </Grid>)
+                            </Grid>
+                        </>)
 
             }
         </>
