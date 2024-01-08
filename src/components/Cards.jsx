@@ -9,7 +9,13 @@ const PostCard = ({ id, title, desc }) => {
 
     const navigate = useNavigate()
     const deletePost = () => {
-        axios.delete(`${BaseURL}/posts/${id}`).then(
+        axios.delete(`${BaseURL}/posts/${id}`,
+            // {
+            //     header:{
+            //         Authorization:`Bearer ${token}`
+            //     }
+            // }
+        ).then(
             () => {
                 toast.success("Delete successfully")
                 onClose()
