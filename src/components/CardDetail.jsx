@@ -3,13 +3,37 @@ import { Text, Flex, Textarea, Button, Card, CardBody, Image, Stack, Heading, Ca
 import axios from 'axios'
 import { BaseURL } from '../App'
 import { useParams } from "react-router-dom"
+import * as yup from "yup";
 import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+
 const CardDetail = () => {
 
     const { id } = useParams()
     const [postDetail, setPostDetail] = useState({})
     const [loading, setLoading] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const editDefaultValues = {
+        title: postDetail?.title,
+        desc: postDetail?.body,
+    }
+    const editPostSchema = yup.object().shape({
+        title: yup.string().min(5, "Titl length too short"),
+        desc: yup.string().required("desc is required")
+    })
+    const { register, handleSubmit, setValue } = useForm({
+        defaultValues: editDefaultValues,
+        resolver: yupResolver(editPostSchema)
+    })
+    // useEffect(() => {
+    //     if (postDetail) {
+    //         setValue("title", postDetail.title)
+    //         setValue("desc", postDetail.body)
+    //     }
+
+    // }, [postDetail])
     // const formSubmit = async(e) => {
     const formSubmit = (e) => {
         e.preventDefault()
@@ -80,19 +104,21 @@ const CardDetail = () => {
                             <Flex gap={2} flexDirection={"column"}>
                                 <Text>Title:</Text>
                                 <Input
-                                    value={postDetail.title}
-                                    onChange={(e) => {
-                                        setPostDetail({ ...postDetail, title: e.target.value })
-                                    }}
+                                    // value={postDetail.title}
+                                    // onChange={(e) => {
+                                    //     setPostDetail({ ...postDetail, title: e.target.value })
+                                    // }}
+                                    {...register("title")}
                                     placeholder={"Enter new title"} />
                                 <Text>Descrption:</Text>
                                 <Textarea
-                                    value={postDetail.body}
-                                    onChange={(e) => {
-                                        setPostDetail({ ...postDetail, body: e.target.value })
-                                    }}
+                                    // value={postDetail.body}
+                                    // onChange={(e) => {
+                                    //     setPostDetail({ ...postDetail, body: e.target.value })
+                                    // }}
+                                    {...register("desc")}
                                     placeholder={"Enter new desc"} />
-                                <Button type="submit" onClick={(e) => formSubmit(e)}>{loading ? < Spinner
+                                <Button type="submit" onClick={(e) => handleSubmit(formSubmit(e))}>{loading ? < Spinner
                                     thickness='1px'
                                     speed='0.65s'
                                     emptyColor='gray.200'
