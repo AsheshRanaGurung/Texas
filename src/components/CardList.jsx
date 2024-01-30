@@ -6,8 +6,8 @@ import PostCard from './Cards'
 import { useNavigate } from "react-router-dom"
 const CardList = () => {
     const [posts, setPosts] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
         axios.get(`${BaseURL}/posts`).then(
