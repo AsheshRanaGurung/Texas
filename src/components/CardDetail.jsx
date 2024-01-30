@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Text, Flex, Textarea, Button, Card, CardBody, Image, Stack, Heading, CardFooter, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, Spinner, ModalOverlay, useDisclosure, Input } from '@chakra-ui/react'
 import axios from 'axios'
 import { BaseURL } from '../App'
@@ -23,18 +23,11 @@ const CardDetail = () => {
         title: yup.string().min(5, "Titl length too short"),
         desc: yup.string().required("desc is required")
     })
-    const { register, handleSubmit, setValue } = useForm({
+    const { register, handleSubmit } = useForm({
         defaultValues: editDefaultValues,
         resolver: yupResolver(editPostSchema)
     })
-    // useEffect(() => {
-    //     if (postDetail) {
-    //         setValue("title", postDetail.title)
-    //         setValue("desc", postDetail.body)
-    //     }
 
-    // }, [postDetail])
-    // const formSubmit = async(e) => {
     const formSubmit = (e) => {
         e.preventDefault()
         // const response =await axios.put(`${BaseURL}/post/${id}`, postDetail)
@@ -58,11 +51,11 @@ const CardDetail = () => {
             }
         ).catch(
             (err) => {
-                toast.error("API failed")
+                toast.error(`${err}-API failed`)
 
             }
         )
-    }, [])
+    }, [id])
     return (
         <>
 
