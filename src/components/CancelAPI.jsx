@@ -12,8 +12,6 @@ const CancelAPI = () => {
         return()=>{ abortAPI.abort()}
     },[dataID])
   return (
-
-
     <div>data for post ID {dataID}
     <br/>
         <button onClick={()=>setDataID(prev=>prev+1)}>new api</button>
