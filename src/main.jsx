@@ -12,6 +12,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             position="top-right" />
         <App />
     </ChakraProvider>
-    {/* this is a test comment. Please ignore */}
     </React.StrictMode>,
 )
