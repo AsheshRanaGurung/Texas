@@ -23,7 +23,6 @@ function App() {
             element: <Login />,
         }
     ])
-how to add svg icon component here
     useEffect(() => {
         const token = localStorage.getItem("TexasToken");
         setIsAuthenticated(!!token);
