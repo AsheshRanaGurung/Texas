@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Igonrefile = () => {
+const Igonorefile = () => {
   return (
     <div>Igonrefile</div>
    
