@@ -11,7 +11,6 @@ import Wrapper from './Wrapper';
 import { focusCard } from 'core';
 import { ActiveWorkflowTarget } from './ActiveWorkflowTarget';
 import { BE_FieldType } from '../../../types';
-
 interface ServiceConditionsProps {
   services?: BE_FieldType;
 }
