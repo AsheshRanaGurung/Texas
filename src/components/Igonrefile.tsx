@@ -16,8 +16,7 @@ export const ServiceConditions: React.FC<ServiceConditionsProps> = ({ services }
   if (!services) return null;
   const flexRef = useRef(null);
   const { data, isLoading } = useServiceList();
-  const { isactionTrigger, styleActionOnTarget, targetAction } =
-    ActiveWorkflowTarget('#Service%20Name');
+
   const serviceData = data?.find(service => service.id === services?.fields.value);
 
   useEffect(() => {
