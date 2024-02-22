@@ -7,8 +7,6 @@ import useServiceList from '../../../create-or-update/filter/service/useServiceL
 import { OperatorTypes } from '../../../types/enums';
 import { safeEncodeUriComponent } from '../../../utils';
 import { Loader } from './Loader';
-import Wrapper from './Wrapper';
-import { focusCard } from 'core';
 
 interface ServiceConditionsProps {
   services?: BE_FieldType;
