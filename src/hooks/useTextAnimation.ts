@@ -5,7 +5,6 @@ const useTextAnimation = (e: HTMLElement) => {
   let i = 0;
   const initialText = e.innerText;
   
-
   interval = setInterval(() => {
     e.innerText = initialText
       .split("")
