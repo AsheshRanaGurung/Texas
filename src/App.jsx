@@ -4,6 +4,7 @@ import CardDetail from './components/CardDetail'
 import CardList from './components/CardList'
 import Login from './components/Login'
 import TextAnimation from "./components/TextAnimation"
+import InfiniteScroll from "./components/InfiniteScroll"
 import { useEffect, useState } from 'react'
 
 export const BaseURL = "https://jsonplaceholder.typicode.com"
@@ -19,6 +20,11 @@ function App() {
             path: "/nameGenerator",
             element: <TextAnimation />,
         },
+        {
+            path: "/infiniteScroll",
+            element: <InfiniteScroll/>,
+        },
+        
         {
             path: "/post/:id",
             element: <CardDetail />,
