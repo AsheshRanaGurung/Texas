@@ -38,9 +38,7 @@ const InfiniteScroll = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isLoading]);
-
   const observerTarget = useRef(null);
-
 //   useEffect(() => {
 //     const observer = new IntersectionObserver(
 //       entries => {
@@ -71,7 +69,6 @@ const InfiniteScroll = () => {
 
   return (
     <div>
-
       {items.map(item => (
    <>
     <Image src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Kbs4Cq0-D-Z9p94FcNxTx9LuoU5HSGtTvg&usqp=CAU"} alt="img"/>
