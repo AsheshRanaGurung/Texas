@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Text ,Image} from "@chakra-ui/react";
+import axios from "axios";
 
 const InfiniteScroll = () => {
     const [items, setItems] = useState([]);
@@ -12,13 +13,15 @@ const InfiniteScroll = () => {
     setError(null);
 
     try {
-      const response = await fetch(`https://api.escuelajs.co/api/v1/products?offset=${page}&limit=5`);
-      const data = await response.json();
-  
-      setItems(prevItems => [...prevItems, ...data]);
+      const data = await axios.get(`https://api.escuelajs.co/api/v1/psroducts?offset=${page}&limit=5`);
+
+      setItems(prevItems => [...prevItems, ...data.data]);
+      console.log("error222")
+
       setPage(prev=>prev+1)
     } catch (error) {
-      setError(error);
+        console.log("error",error)
+      setError(error.response.data.message);
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +71,7 @@ const InfiniteScroll = () => {
 
   return (
     <div>
-    
+
       {items.map(item => (
    <>
     <Image src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Kbs4Cq0-D-Z9p94FcNxTx9LuoU5HSGtTvg&usqp=CAU"} alt="img"/>
@@ -79,7 +82,7 @@ const InfiniteScroll = () => {
       ))}
 
     {isLoading && <p>Loading...</p>}
-    {error && <p>Error: {error.message}</p>}
+    {error && <p>Error: {error}</p>}
     {/* <div ref={observerTarget} ></div> */}
   </div>
   );
