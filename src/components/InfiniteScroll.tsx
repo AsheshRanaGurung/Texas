@@ -25,7 +25,6 @@ const InfiniteScroll = () => {
   };
 
   const handleScroll = () => {
-
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
       return;
     }
@@ -69,7 +68,7 @@ const InfiniteScroll = () => {
 
   return (
     <div>
-    <ul>
+    
       {items.map(item => (
    <>
     <Image src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Kbs4Cq0-D-Z9p94FcNxTx9LuoU5HSGtTvg&usqp=CAU"} alt="img"/>
@@ -78,7 +77,7 @@ const InfiniteScroll = () => {
       </Text>
    </>
       ))}
-    </ul>
+
     {isLoading && <p>Loading...</p>}
     {error && <p>Error: {error.message}</p>}
     {/* <div ref={observerTarget} ></div> */}
