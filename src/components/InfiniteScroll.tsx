@@ -16,8 +16,6 @@ const InfiniteScroll = () => {
       const data = await axios.get(`https://api.escuelajs.co/api/v1/psroducts?offset=${page}&limit=5`);
 
       setItems(prevItems => [...prevItems, ...data.data]);
-      console.log("error222")
-
       setPage(prev=>prev+1)
     } catch (error) {
         console.log("error",error)
