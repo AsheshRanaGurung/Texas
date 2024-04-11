@@ -16,4 +16,4 @@ const merge=(left:Array<number>,right:Array<number>)=>{
     }
     return [...sortedArr,...left,...right]
 }
-console.log(mergeSort([3,2,1]));
+console.log(mergeSort([3,2,1,5,10]));
