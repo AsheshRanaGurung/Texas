@@ -16,7 +16,7 @@ const merge1=(left:Array<number>,right:Array<number>)=>{
     }
     return [...sortedArr,...left,...right]
 }
-const binarySort=(arr:Array<number>,targetIndex:number)=>{
+const binarySearch=(arr:Array<number>,targetIndex:number)=>{
 let start= 0;
 let end=arr.length-1;
 const sortedArr=mergeSort1(arr)
@@ -32,4 +32,4 @@ while(start<=end){
 return -1
 }
 
-console.log(binarySort([6,5,4,3,2,1],1))
+console.log(binarySearch([6,5,4,3,2,1],1))
